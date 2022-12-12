@@ -12,7 +12,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://gitlab.msu.edu/ardiste3/cmse-802-ardister/-/issues.
+Report bugs at https://github.com/ardiste3/nonholonomics/issues.
 
 Please include:
 
@@ -41,7 +41,7 @@ or simple comments
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://gitlab.msu.edu/ardiste3/cmse-802-ardister/-/issues.
+The best way to send feedback is to file an issue at https://github.com/ardiste3/nonholonomics/issues.
 
 If you are proposing a feature:
 
@@ -56,7 +56,7 @@ Ready to contribute? Here's how to set up `nonhlonomics` for local development.
 1. Fork the `nonholonomics` repo on GitHub.
 2. Clone your fork locally::
 
-    $ git clone git@gitlab.msu.edu:your_username_here/cmse-802-ardister.git
+    $ git clone https://github.com/ardiste3/nonholonomics
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 
@@ -95,4 +95,3 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-
