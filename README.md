@@ -1,26 +1,3 @@
-nonholonomics/
-├── LICENSE
-├── pyproject.toml
-├── README.md
-├── setup.cfg
-└── nonholonomics/
-    ├── __init__.py
-    ├── NHL/
-    |   ├── __init__.py
-    |   └── example.py
-    └── Simpulation/
-        ├── __init__.py
-        └── example.py
-
-
-
-
-
-
-
-
-
-
 In this project I aim to model carangiform fish swimming using nonholonomic constraints. Some of my approximations neglect various environmental effects. Because of this, my model can be reduced to a "landfish". The model consists of two rigid bodies: a head and tail, each with its own set of physical attribute parameters. The motion of the tail will be an imposed angular oscillation (to mimic neuromuscular activation) relative to the head. Nonholonomic constraints emulate the effects of dorsal and caudal "fins" on the landfish. In this model, the head and tail are constrained to move in the direction they are pointing. The tail is linked to the head by pins and springs. To ensure the forward motion has a bounded velocity, a nonlinear damping term is added to the equation of motion.
 
 I will use nonholonomic Lagrange equations to produce the equations of motion. Which consist of one second-order nonlinear differential equation and two first-order nonholonomic constraint equations, representing a fourth-order forced dynamical system. I will analyze the behavior of the equations of motion to gain insight on possible parameter limitations, and roles.
