@@ -79,5 +79,5 @@ GitHub and create a pull request. We welcome all changes, big or small,
 and we will help you make the pull request if you are new to git.
 
 ## Brief History
-
+This started out as project in graduate school. 
 
