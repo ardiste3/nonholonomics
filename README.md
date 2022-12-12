@@ -34,7 +34,7 @@ we are not on pypi yet, we use test.pypi until our first launch.
 
 to in install from test.pypi, use:
 
-$ pip install -i https://test.pypi.org/simple/ nonholonomics
+    $ pip install -i https://test.pypi.org/simple/ nonholonomics
 
 You can also get the latest version of nonholonomics from
 <https://test.pypi.org/simple/ nonholonomics>
