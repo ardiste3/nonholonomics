@@ -10,6 +10,7 @@ Currently we only have one. It gets lonely so join the team!
 
 License: New GNU License (see the [LICENSE](LICENSE) file for details) covers all
 files in the nonholonomics repository unless stated otherwise.
+
 Nonholonomics aims to become a central location for all things nonholonomic! We aim to centralize common methods for easy access and easy manipulation. Currently, the methods of solving nonholonomic systems in python are restricted to self built programs of by making use of Sympy's Lagrange multiplier method. 
 
 Currently, nonholonomics is still in development. We have implemented a module to evaluate the nonholonomic Lagrange equations. This is a first step in producing modules to be tested. 
