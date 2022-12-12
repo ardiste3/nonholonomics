@@ -2,4 +2,4 @@
 Simulation
 """
 
-from Simulation import *
+from .Simulation import *

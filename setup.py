@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as readme:
 
 setuptools.setup(
     name='nonholonomics',
-    version='0.0.2',
+    version='0.0.3',
     author='Jamal Ardister',
     author_email='ardiste3@msu.edu',
     description='A collection of tools to used to evaluate dynamical systems with nonholonomic constraints',

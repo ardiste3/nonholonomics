@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: nonholonomics
-Version: 0.0.1
+Version: 0.0.3
 Summary: A collection of tools to used to evaluate dynamical systems with nonholonomic constraints
 Home-page: https://github.com/ardiste3/nonholonomics
 Author: Jamal Ardister
@@ -8,6 +8,7 @@ Author-email: ardiste3@msu.edu
 License: GNU AGPLv3
 Project-URL: Bug Tracker, https://github.com/ardiste3/nonholonomics/issues
 Description-Content-Type: text/markdown
+License-File: LICENSE
 
 In this project I aim to model carangiform fish swimming using nonholonomic constraints. Some of my approximations neglect various environmental effects. Because of this, my model can be reduced to a "landfish". The model consists of two rigid bodies: a head and tail, each with its own set of physical attribute parameters. The motion of the tail will be an imposed angular oscillation (to mimic neuromuscular activation) relative to the head. Nonholonomic constraints emulate the effects of dorsal and caudal "fins" on the landfish. In this model, the head and tail are constrained to move in the direction they are pointing. The tail is linked to the head by pins and springs. To ensure the forward motion has a bounded velocity, a nonlinear damping term is added to the equation of motion.
 
