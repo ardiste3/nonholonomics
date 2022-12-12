@@ -14,7 +14,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url='https://github.com/ardiste3/nonholonomics',
     project_urls={
-        "Bug Tracker": "https://github.com/ardiste3/nonholonomics.git/issues"
+        "Bug Tracker": "https://github.com/ardiste3/nonholonomics/issues"
     },
     license='GNU AGPLv3',
     packages=['NHL', 'Simulation'],
