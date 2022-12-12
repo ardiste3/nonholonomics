@@ -40,10 +40,20 @@ class NHL_Eqn:
         Constraint Equations: The nonholonomic constraints of the system or model. These equations are optional and the default is none. If there are no constraints defined,
         the get_alpha method will raise an error
 
+        k: this is the number of coordinates that are independent of the constraint equations. This is only needed for nonholonomic lagrange equations
+
+        m: this is the number of nonholonomic constraints in the system.
+
+        Note:
+        -----
+        Currently, complete functionality is only reasonable for small holonomic linear systems. This is due to the fact that the user must manually type the state equations into an ODE solver.
+        Additionally, nonlinear systems requre separate ODE solvers and nonlinearity detection has not been implemented yet. However, obtaining the equation of motion is still available for use. 
+        The solution to the equation of motion is available outside of this module by means of the user. 
+
     """
 
     def __init__(self, lagrangian: sym.core.add.Add, coordinates: tuple, coordinate_derivatives: tuple,
-                 state_variables: list = None, constraint_equations: list = None, *, k: int = 0, m: int = 0) -> None:
+                 state_variables: list = None, constraint_equations: tuple = None, *, k: int = 0, m: int = 0) -> None:
 
         self.lagrangian = lagrangian
         self.coordinates = coordinates
@@ -53,8 +63,9 @@ class NHL_Eqn:
         self.k = k
         self.m = m
 
-        if not type(lagrangian) is sym.core.add.Add:
-            raise TypeError('Verify the Lagrangian is of the proper type.')
+        # if not type(lagrangian) is sym.core.add.Add:
+        #     raise TypeError(
+        #         'Verify the Lagrangian is of the proper type. Check the lagrangian variable you defined and make sure it has dynamicsymbols and symbols for all parameters and coordinates.')
 
         if not type(coordinates) is tuple:
             raise TypeError('Coordinates must be a tuple.')
@@ -71,13 +82,13 @@ class NHL_Eqn:
         if not type(k) is int:
             raise TypeError('k must be an integer.')
 
-        if k <= 0:
+        if k < 0:
             raise ValueError('k must be positive.')
 
         if not type(m) is int:
             raise TypeError('m must be an integer.')
 
-        if m <= 0:
+        if m < 0:
             raise ValueError('m must be positive.')
 
     def nh_lagranges_equations(self):
@@ -86,8 +97,9 @@ class NHL_Eqn:
 
         """
         # This is applies when there are no nonholonomic constraints effectivly resulting in the normal Lagranges equations.
-        try:
-            if self.constraint_equations == None:
+
+        if self.constraint_equations == None:
+            try:
                 eoms = []
                 for i, qk in enumerate(self.coordinates):
                     qkd = self.coordinate_derivatives[i]
@@ -97,23 +109,28 @@ class NHL_Eqn:
                     eoms.append(sym.diff(sym.diff(self.lagrangian, qkd), sym.Symbol(
                         't'))-sym.diff(self.lagrangian, qk))
                 return eoms
-        except:
-            print('Error: Please verify the Lagrangian, coordinates and their derivatives. They should all be symbols')
+            except:
+                print(
+                    'Error in lagranges equation: Please verify the Lagrangian, coordinates and their derivatives. They should all be symbols')
 
         # If nonholonomic constraints are present, this step will apply.
         else:
-            eoms = []
-            for k in range(self.k):
-                holonomic = sym.diff(sym.diff(self.lagrangian, self.coordinate_derivatives[k]), sym.Symbol(
-                    't'))-sym.diff(self.lagrangian, self.coordinates[k])
-                nonholonomic = []
-                for h in range(self.m):
-                    nonholonomic.append(sym.diff(sym.diff(self.lagrangian, self.coordinate_derivatives[k+h+1]), sym.Symbol(
-                        't'))-sym.diff(self.lagrangian, self.coordinates[k+h+1]))
-                for i in range(len(nonholonomic)-1):
-                    holonomic+nonholonomic[i]+nonholonomic[i+1]
-                    eoms.append(
-                        holonomic+nonholonomic[i]*self.get_alpha()[i]+nonholonomic[i+1]*self.get_alpha()[i+1])
+            try:
+                eoms = []
+                for k in range(self.k):
+                    holonomic = sym.diff(sym.diff(self.lagrangian, self.coordinate_derivatives[k]), sym.Symbol(
+                        't'))-sym.diff(self.lagrangian, self.coordinates[k])
+                    nonholonomic = []
+                    for h in range(self.m):
+                        nonholonomic.append(sym.diff(sym.diff(self.lagrangian, self.coordinate_derivatives[self.k+h]), sym.Symbol(
+                            't'))-sym.diff(self.lagrangian, self.coordinates[self.k+h]))
+                    for i in range(len(nonholonomic)-1):
+                        holonomic+nonholonomic[i]+nonholonomic[i+1]
+                        eoms.append(
+                            holonomic+nonholonomic[i]*self.get_alpha()[i]+nonholonomic[i+1]*self.get_alpha()[i+1])
+            except:
+                print(
+                    'Error in NHL equation: Please verify the Lagrangian, coordinates and their derivatives. They should all be symbols')
             return eoms
 
     def make_states(self):
@@ -123,7 +140,7 @@ class NHL_Eqn:
         """
 
         equations = []
-        for i, expression in enumerate(self.lagranges_equations()):
+        for i, expression in enumerate(self.nh_lagranges_equations()):
 
             # denom is the coefficient of the second order dervative of the current coordinate.
             denom = expression.coeff(sym.Derivative(
@@ -186,9 +203,9 @@ if __name__ == "__main__":
 
         # This step establishes the variable names used for the coordinates used in the lagrangian.
         # coordinates must be entered with independent coords first.
-        x, y, z = dynamicsymbols('x y z')
+        x, y, z, = dynamicsymbols('x y z')
         # The right side of this equation must match the left side of the one above.
-        coordinates = z, x, y
+        coordinates = z, x, y,
 
         # This step establishes the variable names we wish to use for the state space
         z1, z2, z3, z4, z5, = dynamicsymbols('z1 z2 z3 z4 z5')
@@ -196,9 +213,9 @@ if __name__ == "__main__":
         state_variables = [z1, z2, z3, z4, z5]
 
         # This step assigns variable names fot coordinate derivatives
-        xd, yd, zd = dynamicsymbols('x y z', 1)
+        xd, yd, zd, = dynamicsymbols('x y z', 1)
         # The right side of this equation must match the left side of the one above.
-        coordinate_derivatives = zd, xd,
+        coordinate_derivatives = zd, xd, yd
 
         # This step makes the parameters into symbols.
         # Every parrameter in the system must appear here. If the value is known, enter it directly in the Lagrangian
@@ -214,8 +231,8 @@ if __name__ == "__main__":
         # If your system has 0 nonholonimic constraints, u
         c1 = xd+x*yd+y*zd
         c2 = y*xd+z*yd+zd
-        constraint_equations = [c1, c2]
-        # constraint_equations=None
+        constraint_equations = (c1, c2)
+        # constraint_equations = None
 
         system = NHL_Eqn(lagrangian, coordinates, coordinate_derivatives,
                          state_variables, constraint_equations, k=1, m=2)

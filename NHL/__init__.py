@@ -1,5 +1,0 @@
-"""
-NHL
-"""
-
-from .NHL import *

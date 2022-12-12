@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: nonholonomics
-Version: 0.0.3
+Version: 0.0.12
 Summary: A collection of tools to used to evaluate dynamical systems with nonholonomic constraints
 Home-page: https://github.com/ardiste3/nonholonomics
 Author: Jamal Ardister

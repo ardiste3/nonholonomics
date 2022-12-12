@@ -1,22 +1,87 @@
-In this project I aim to model carangiform fish swimming using nonholonomic constraints. Some of my approximations neglect various environmental effects. Because of this, my model can be reduced to a "landfish". The model consists of two rigid bodies: a head and tail, each with its own set of physical attribute parameters. The motion of the tail will be an imposed angular oscillation (to mimic neuromuscular activation) relative to the head. Nonholonomic constraints emulate the effects of dorsal and caudal "fins" on the landfish. In this model, the head and tail are constrained to move in the direction they are pointing. The tail is linked to the head by pins and springs. To ensure the forward motion has a bounded velocity, a nonlinear damping term is added to the equation of motion.
+# Brief Overview
 
-I will use nonholonomic Lagrange equations to produce the equations of motion. Which consist of one second-order nonlinear differential equation and two first-order nonholonomic constraint equations, representing a fourth-order forced dynamical system. I will analyze the behavior of the equations of motion to gain insight on possible parameter limitations, and roles.
+Nonholonomics aims to become a central location for all things nonholonomic! We aim to centralize common methods for easy access and easy manipulation. Currently, the methods of solving nonholonomic systems in python are restricted to self built programs of by making use of Sympy's Lagrange multiplier method. 
 
-Simulations will be done using Python. For various parameter values, examples of robust, smooth fish-like swimming should be obtainable. In which, the head oscillates slightly about a mean path as the landfish "swims" along a rigid, substrate. Parameters sets that show smooth, robust swimming will be analyzed in greater detail to see how the velocity builds from rest and to categorize the swimming motion.
+Currently, nonholonomics is still in development. We have implemented a module to evaluate the nonholonomic Lagrange equations. This is a first step in producing modules to be tested. 
 
-If time permits, I would also like to use machine learning to perform systematic simulations for uncovering classes of behavior, small-parameter perturbation analyses may also be done for revealing roles of parameters in regular motion
+We also have a module for plotting purposes. In dynamics, we often plot the states of the system. The functions contained in this module aim to make this quick and easy. 
 
-evaluateNHL.py
-    This file contatins a function that will symbolically evaluate the nonholonomic lagrange equation. The file will need to be give the unconstrained lagrangian, the nonholonomic constraints, and the dynamic varibles as a an array from 1-n with the independant variables being the first p entries and the dependant varibles occupying the n-p slots at the end.
+We have made a handful of examples for users to get familliar with. The examples are located in the examples directory and are simply numbered to keep naming short and easy. 
 
-nondimensionalization.py
-    This program will nondimensionalize the output of evaluateNHL or any second order ode with some limitations.
+For a complte example using a holonomic linear system, take a look at example1.py for an indepth look at how to use most of the methods and classes.
 
-harmonicbalance.py
-    This program takes in the the EOM od nondimensionalized EOM and performs a harmonic balance to obtain the steady state solution of the independent variable. 
+Example2.py and example3.py compare the implementation of constraints. The current program will handle systems with and with out nonholonomoic constraints. 
 
-Simulation.py
-    This program takes in the eom or the nondimensionalized eom and numerically solves the system of odes. Then runs a ploting routine to plot various phase portraits and in my personal case, will animate the solutions
+Example4.py shows the program can evaluate a nonlinear system. In this case it is the pendulum. There are comments to make the system linear to compare the results. 
 
-Parameterstudy.py
-    This program will examine the eom for import relationships between parameters in either the dimensional case or nondimensional case. The quatitavie results will presented qualitatively as expected outcomes based on some chosen parameters.
+We are working on implementing support for Lagrange multipliers and the principal of virtual power. If you would like to help please check out the contributing documentation.
+
+# Nonholonomics
+
+[![GitHub Issues](https://img.shields.io/badge/issue_tracking-github-blue.svg)](https://github.com/ardiste3/nonholonomics/issues)
+[![Git Tutorial](https://img.shields.io/badge/How-to-'git'-%23FF8300.svg?)](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
+
+
+
+
+See the [AUTHORS](AUTHORS) file for the list of authors.
+Currently we only have one. It gets lonely so join the team!
+
+
+License: New GNU License (see the [LICENSE](LICENSE) file for details) covers all
+files in the nonholonomics repository unless stated otherwise.
+
+## Download
+
+The recommended installation method is through pip,
+we are not on pypi yet, we use test.pypi until our first launch. 
+
+to in install from test.pypi, use:
+
+$ pip install -i https://test.pypi.org/simple/ nonholonomics
+
+You can also get the latest version of nonholonomics from
+<https://test.pypi.org/simple/ nonholonomics>
+
+To get the git version do
+
+    $ git clone https://github.com/ardiste3/nonholonomics
+
+For other options (tarballs, debs, etc.), please wait patiently or email your request in.
+
+
+## Contributing
+
+We welcome contributions from anyone, even if you are new to open
+source.
+
+## Clean
+
+To clean everything (thus getting the same tree as in the repository):
+
+    $ git clean -Xdf
+
+which will clear everything ignored by `.gitignore`, and:
+
+    $ git clean -df
+
+to clear all untracked files. You can revert the most recent changes in
+git with:
+
+    $ git reset --hard
+
+WARNING: The above commands will all clear changes you may have made,
+and you will lose them forever. Be sure to check things with `git
+status`, `git diff`, `git clean -Xn`, and `git clean -n` before doing any
+of those.
+
+## Bugs
+
+Our issue tracker is at <https://github.com/ardiste3/nonholonomics/issues>. Please
+report any bugs that you find. Or, even better, fork the repository on
+GitHub and create a pull request. We welcome all changes, big or small,
+and we will help you make the pull request if you are new to git.
+
+## Brief History
+
+
