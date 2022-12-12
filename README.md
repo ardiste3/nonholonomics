@@ -1,5 +1,15 @@
-# Brief Overview
 
+
+# Nonholonomics
+
+[![GitHub Issues](https://img.shields.io/badge/issue_tracking-github-blue.svg)](https://github.com/ardiste3/nonholonomics/issues)
+
+
+See the [AUTHORS](AUTHORS) file for the list of authors.
+Currently we only have one. It gets lonely so join the team!
+
+License: New GNU License (see the [LICENSE](LICENSE) file for details) covers all
+files in the nonholonomics repository unless stated otherwise.
 Nonholonomics aims to become a central location for all things nonholonomic! We aim to centralize common methods for easy access and easy manipulation. Currently, the methods of solving nonholonomic systems in python are restricted to self built programs of by making use of Sympy's Lagrange multiplier method. 
 
 Currently, nonholonomics is still in development. We have implemented a module to evaluate the nonholonomic Lagrange equations. This is a first step in producing modules to be tested. 
@@ -15,21 +25,6 @@ Example2.py and example3.py compare the implementation of constraints. The curre
 Example4.py shows the program can evaluate a nonlinear system. In this case it is the pendulum. There are comments to make the system linear to compare the results. 
 
 We are working on implementing support for Lagrange multipliers and the principal of virtual power. If you would like to help please check out the contributing documentation.
-
-# Nonholonomics
-
-[![GitHub Issues](https://img.shields.io/badge/issue_tracking-github-blue.svg)](https://github.com/ardiste3/nonholonomics/issues)
-[![Git Tutorial](https://img.shields.io/badge/How-to-'git'-%23FF8300.svg?)](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
-
-
-
-
-See the [AUTHORS](AUTHORS) file for the list of authors.
-Currently we only have one. It gets lonely so join the team!
-
-
-License: New GNU License (see the [LICENSE](LICENSE) file for details) covers all
-files in the nonholonomics repository unless stated otherwise.
 
 ## Download
 
